@@ -1,5 +1,5 @@
 ---
-title: 您想知道有關於例外狀況的一切 (英文)
+title: 您想知道有關於例外狀況的一切
 description: 在撰寫程式碼時，錯誤處理只是生命必經的歷程。
 ms.date: 05/23/2020
 ms.custom: contributor-KevinMarquette
@@ -10,7 +10,7 @@ ms.contentlocale: zh-TW
 ms.lasthandoff: 06/03/2020
 ms.locfileid: "84337177"
 ---
-# <a name="everything-you-wanted-to-know-about-exceptions"></a>您想知道有關於例外狀況的一切 (英文)
+# <a name="everything-you-wanted-to-know-about-exceptions"></a>您想知道有關於例外狀況的一切
 
 在撰寫程式碼時，錯誤處理只是生命必經的歷程。 我們通常可以檢查並驗證預期行為的條件。 當發生未預期的情況時，我們會轉換成例外狀況處理。 您可以輕鬆地處理其他人的程式碼所產生的例外狀況，或者您可以產生自己的例外狀況供其他人處理。
 
@@ -52,7 +52,7 @@ ms.locfileid: "84337177"
 
 ### <a name="throw"></a>Throw
 
-若要建立自己的例外狀況事件，我們會擲回具有 `throw` 關鍵字的例外狀況。
+若要建立自己的例外狀況事件，我們會使用 `throw` 關鍵字擲回例外狀況。
 
 ```powershell
 function Start-Something
@@ -61,7 +61,7 @@ function Start-Something
 }
 ```
 
-這會建立終止錯誤的執行階段例外狀況。 它是由呼叫函式中的 `catch` 來處理，或是結束具有如下訊息的指令碼。
+這會建立終止錯誤的執行階段例外狀況。 它是由呼叫函式中的 `catch` 來處理，或是結束指令碼並顯示如下訊息。
 
 ```powershell
 PS> Start-Something
@@ -94,7 +94,7 @@ Start-Something -ErrorAction Stop
 
 ### <a name="trycatch"></a>Try/Catch
 
-例外狀況處理在 PowerShell 中的運作方式 (以及許多其他程式設計語言) 是您先 `try` 一段程式碼，如果它擲回錯誤，您就可以 `catch` 該程式碼。 以下是一個簡短的範例。
+例外狀況處理在 PowerShell (以及許多其他程式設計語言) 中的運作方式是您先 `try` 一段程式碼，如果它擲回錯誤，您就可以 `catch` 該程式碼。 以下是一個簡短的範例。
 
 ```powershell
 try
@@ -374,7 +374,7 @@ catch [System.IO.FileNotFoundException]
 
 #### <a name="the-big-list-of-net-exceptions"></a>.NET 例外狀況的大型清單
 
-我已藉由 [Reddit/r/PowerShell community][]的協助來編譯主要清單，其中包含數以百計的 .NET 例外狀況，藉此充實這篇文章的內容。
+我已藉由 [Reddit/r/PowerShell 社群][]的協助來編譯主要清單，其中包含數以百計的 .NET 例外狀況，藉此充實這篇文章的內容。
 
 - [.NET 例外狀況的大型清單][]
 
@@ -382,7 +382,7 @@ catch [System.IO.FileNotFoundException]
 
 ### <a name="exceptions-are-objects"></a>例外狀況皆為物件
 
-如果您開始使用許多類型例外狀況，請記住它們都是物件。 不同的例外狀況有不同的建構函式和屬性。 如果我們查看 `System.IO.FileNotFoundException` 的 [FileNotFoundException][] 檔，我們會看到我們可以傳入的訊息和檔案路徑。
+如果您開始使用許多類型例外狀況，請記住它們都是物件。 不同的例外狀況有不同的建構函式和屬性。 如果我們查看 `System.IO.FileNotFoundException` 的 [FileNotFoundException][] 文件，我們會看到我們可以傳入的訊息和檔案路徑。
 
 ```powershell
 [System.IO.FileNotFoundException]::new("Could not find file", $path)
@@ -526,7 +526,7 @@ catch
 
 ### <a name="public-function-templates"></a>公用函式範本
 
-我對 Kirk Munro 的對話的最後一項要點就是，他在所有的進階函式中都在每個 `begin`、`process` 和 `end` 區塊附近放置 `try{...}catch{...}`。 在這些一般 catch 區塊中，他會使用一行 `$PSCmdlet.ThrowTerminatingError($PSItem)` 來處理所有離開函式的例外狀況。
+我與 Kirk Munro 的對話的最後一項要點就是，他在所有的進階函式中都在每個 `begin`、`process` 和 `end` 區塊附近放置 `try{...}catch{...}`。 在這些一般 catch 區塊中，他使用一行 `$PSCmdlet.ThrowTerminatingError($PSItem)` 來處理所有離開函式的例外狀況。
 
 ```powershell
 function Start-Something
@@ -575,7 +575,7 @@ throw [System.Exception]::new('third')
 
 我花了很多時間來談論 `throw`，因為這是在討論例外狀況處理時的核心概念。 PowerShell 也提供我們 `Write-Error`，可因應您使用 `throw` 時的所有情況。 因此，請不要認為在閱讀此之後，您必須使用 `throw`。
 
-既然我已經花時間撰寫有關例外狀況處理的詳細資訊，現在我要將重點切換到使用 `Write-Error -Stop` 在我的程式碼中產生錯誤。 我也會採納 Kirk 的建議，並針對每個函數使 `ThrowTerminatingError` 成為我的 goto 例外處理常式。
+既然我已經花時間撰寫有關例外狀況處理的詳細資訊，現在我要將重點切換到使用 `Write-Error -Stop` 在我的程式碼中產生錯誤。 我也會採納 Kirk 的建議，並針對每個函數使 `ThrowTerminatingError` 成為我的 goto 例外狀況處理常式。
 
 <!-- link references -->
 [powershellexplained.com]: https://powershellexplained.com/
