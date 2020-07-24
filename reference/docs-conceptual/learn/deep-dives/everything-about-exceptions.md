@@ -1,5 +1,5 @@
 ---
-title: 您想知道有關於例外狀況的一切 (英文)
+title: 您想知道有關於例外狀況的一切
 description: 在撰寫程式碼時，錯誤處理只是生命必經的歷程。
 ms.date: 05/23/2020
 ms.custom: contributor-KevinMarquette
@@ -10,7 +10,7 @@ ms.contentlocale: zh-TW
 ms.lasthandoff: 06/03/2020
 ms.locfileid: "84337177"
 ---
-# <a name="everything-you-wanted-to-know-about-exceptions"></a>您想知道有關於例外狀況的一切 (英文)
+# <a name="everything-you-wanted-to-know-about-exceptions"></a>您想知道有關於例外狀況的一切
 
 在撰寫程式碼時，錯誤處理只是生命必經的歷程。 我們通常可以檢查並驗證預期行為的條件。 當發生未預期的情況時，我們會轉換成例外狀況處理。 您可以輕鬆地處理其他人的程式碼所產生的例外狀況，或者您可以產生自己的例外狀況供其他人處理。
 
